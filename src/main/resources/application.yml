@@ -1,0 +1,16 @@
+#数据库配置
+spring:
+  application:
+    name: studentPro
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: toor
+    url: jdbc:mysql://localhost:3306/studentManager?useSSL=false&serverTimezone=UTC
+
+#配置mybatis实体和xml映射
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.fan.entity
+server:
+  port: 8080
