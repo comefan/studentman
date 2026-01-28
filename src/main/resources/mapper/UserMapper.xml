@@ -3,5 +3,13 @@
 <mapper namespace="com.fan.dao.UserDao">
     <select id="findAll" resultType="com.fan.entity.User">
         select * from user
+        <where>
+            <if test="userDTO != null and userDTO.name != null and userDTO.name != ''">
+                and name like concat('%', #{userDTO.name}, '%')
+            </if>
+            <if test="userDTO != null and userDTO.phone != null and userDTO.phone != ''">
+                and phone like concat('%', #{userDTO.phone}, '%')
+            </if>
+        </where>
     </select>
 </mapper>

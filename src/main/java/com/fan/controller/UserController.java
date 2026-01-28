@@ -1,14 +1,16 @@
 package com.fan.controller;
 
+import com.fan.common.Result;
+import com.fan.dto.UserDTO;
 import com.fan.entity.User;
 import com.fan.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.github.pagehelper.PageInfo;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @author Administrator
@@ -16,14 +18,16 @@ import java.util.List;
  * @description: TODO
  * @date 2026/1/25 19:27
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
 public class UserController {
     @Resource
     private UserService userService;
     @GetMapping("/all")
-    public List<User> getAllUser() {
-        return userService.getAllUser();
+    public Result getAllUser(UserDTO userDTO) {
+        PageInfo<User> pageInfo = userService.getAllUser(userDTO);
+        return Result.success(pageInfo);
     }
 
 }

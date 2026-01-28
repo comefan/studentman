@@ -1,6 +1,8 @@
 package com.fan.dao;
 
+import com.fan.dto.UserDTO;
 import com.fan.entity.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
@@ -14,5 +16,5 @@ import java.util.List;
  */
 @Repository
 public interface UserDao extends Mapper<User> {
-    List<User> findAll();
+    List<User> findAll(@Param("userDTO") UserDTO userDTO);
 }

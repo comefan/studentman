@@ -1,7 +1,10 @@
 package com.fan.service;
 
 import com.fan.dao.UserDao;
+import com.fan.dto.UserDTO;
 import com.fan.entity.User;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,8 +20,10 @@ import java.util.List;
 public class UserService {
     @Resource
     private UserDao userDao;
-    public List<User> getAllUser() {
-        return userDao.findAll();
+    public PageInfo<User> getAllUser(UserDTO userDTO) {
+        // 开启分页查询
+        PageHelper.startPage(userDTO.getPageNum(), userDTO.getPageSize());
+        return PageInfo.of(userDao.findAll(userDTO));
 //        return userDao.selectAll();
     }
 }
