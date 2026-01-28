@@ -5,10 +5,7 @@ import com.fan.dto.UserDTO;
 import com.fan.entity.User;
 import com.fan.service.UserService;
 import com.github.pagehelper.PageInfo;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -28,6 +25,16 @@ public class UserController {
     public Result getAllUser(UserDTO userDTO) {
         PageInfo<User> pageInfo = userService.getAllUser(userDTO);
         return Result.success(pageInfo);
+    }
+    @PostMapping
+    public Result saveUser(@RequestBody User user){
+        userService.saveUser(user);
+        return Result.success();
+    }
+    @DeleteMapping("/{id}")
+    public Result deleteUser(@PathVariable Integer id){
+        userService.deleteUser(id);
+        return Result.success();
     }
 
 }

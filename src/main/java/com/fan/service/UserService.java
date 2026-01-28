@@ -26,4 +26,19 @@ public class UserService {
         return PageInfo.of(userDao.findAll(userDTO));
 //        return userDao.selectAll();
     }
+
+    public void saveUser(User user) {
+        if (user.getPassword() == null) {
+            user.setPassword("123456");
+        }
+        if (user.getId() == null) {
+            userDao.insertSelective(user);
+        } else {
+            userDao.updateByPrimaryKeySelective(user);
+        }
+    }
+
+    public void deleteUser(Integer id) {
+        userDao.deleteByPrimaryKey(id);
+    }
 }
