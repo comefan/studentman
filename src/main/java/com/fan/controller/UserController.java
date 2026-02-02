@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * @description: TODO
  * @date 2026/1/25 19:27
  */
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -26,14 +26,34 @@ public class UserController {
         PageInfo<User> pageInfo = userService.getAllUser(userDTO);
         return Result.success(pageInfo);
     }
+
+    /*
+     * 前端新增用户或者更新用户信息
+     */
     @PostMapping
     public Result saveUser(@RequestBody User user){
-        userService.saveUser(user);
+        if (user.getId() == null) {
+            userService.saveUser(user);
+        } else {
+            userService.updateUser(user);
+        }
         return Result.success();
     }
     @DeleteMapping("/{id}")
     public Result deleteUser(@PathVariable Integer id){
         userService.deleteUser(id);
+        return Result.success();
+    }
+
+    @PostMapping("/login")
+    public Result login(@RequestBody User user){
+        User loginUser = userService.login(user);
+        return Result.success(loginUser);
+    }
+
+    @PostMapping("/register")
+    public Result register(@RequestBody User user){
+        userService.saveUser(user);
         return Result.success();
     }
 
