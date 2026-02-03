@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * @description: TODO
  * @date 2026/1/25 19:27
  */
-//@CrossOrigin
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
 public class UserController {
