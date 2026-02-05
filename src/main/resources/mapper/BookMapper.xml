@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fan.dao.BookDao">
+    <select id="findAll" resultType="com.fan.entity.Book">
+        select * from book
+        <where>
+            <if test="bookDTO != null and bookDTO.name != null and bookDTO.name != ''">
+                and name like concat('%', #{bookDTO.name}, '%')
+            </if>
+            <if test="bookDTO != null and bookDTO.author != null and bookDTO.author != ''">
+                and author like concat('%', #{bookDTO.author}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>
