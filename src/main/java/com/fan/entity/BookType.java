@@ -1,5 +1,7 @@
 package com.fan.entity;
 
+import cn.hutool.core.annotation.Alias;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +18,9 @@ public class BookType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Alias("分类名称")
     private String name;
+    @Alias("描述")
     private String description;
 
     public Integer getId() {

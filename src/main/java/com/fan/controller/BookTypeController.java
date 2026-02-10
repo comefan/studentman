@@ -4,13 +4,16 @@ import com.fan.common.Result;
 import com.fan.dto.BookDTO;
 import com.fan.entity.Book;
 import com.fan.entity.BookType;
+import com.fan.exception.CustomException;
 import com.fan.service.BookService;
 import com.fan.service.BookTypeService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -64,6 +67,17 @@ public class BookTypeController {
         // 导出excel
         bookTypeService.exportExcel(response);
         return Result.success();
+    }
+
+    @PostMapping("/upload")
+    public Result upload(@RequestParam("file") MultipartFile file){
+        // 上传文件
+        try {
+            bookTypeService.upload(file);
+        } catch (IOException e) {
+            throw new CustomException("上传文件失败");
+        }
+        return Result.success("上传文件成功");
     }
 
 }

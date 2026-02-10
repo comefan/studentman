@@ -12,9 +12,11 @@ import com.fan.exception.CustomException;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -86,5 +88,20 @@ public class BookTypeService {
         }
         writer.close();
         IoUtil.close(System.out);
+    }
+
+    public void upload(MultipartFile file) throws IOException {
+        // 上传文件
+        List<BookType> infoList = ExcelUtil.getReader(file.getInputStream()).readAll(BookType.class);
+        if (!CollectionUtil.isEmpty(infoList)){
+            for (BookType bookType : infoList){
+                try {
+                    this.saveBookType(bookType);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
     }
 }
