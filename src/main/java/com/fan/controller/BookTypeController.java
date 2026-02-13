@@ -33,6 +33,10 @@ public class BookTypeController {
         PageInfo<BookType> pageInfo = bookTypeService.getAllBookTypes(bookDTO);
         return Result.success(pageInfo);
     }
+    @GetMapping
+    public Result getAll(){
+        return Result.success(bookTypeService.getAllBookTypes());
+    }
 
     @PostMapping
     public Result saveBookType(@RequestBody BookType bookType) {

@@ -18,6 +18,10 @@ public class Book {
     private String author;
     private String press;
     private String img;
+    @Column(name = "bookTypeId")
+    private Integer bookTypeId;
+    @Transient
+    private String bookTypeName;
 
     public Integer getId() {
         return id;
@@ -67,4 +71,19 @@ public class Book {
         this.img = img;
     }
 
+    public Integer getBookTypeId() {
+        return bookTypeId;
+    }
+
+    public void setBookTypeId(Integer bookTypeId) {
+        this.bookTypeId = bookTypeId;
+    }
+
+    public String getBookTypeName() {
+        return bookTypeName;
+    }
+
+    public void setBookTypeName(String bookTypeName) {
+        this.bookTypeName = bookTypeName;
+    }
 }

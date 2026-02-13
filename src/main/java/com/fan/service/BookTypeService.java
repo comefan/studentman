@@ -37,6 +37,14 @@ public class BookTypeService {
     }
 
     /**
+     * 获取所有书籍类型
+     * @return
+     */
+    public List<BookType> getAllBookTypes(){
+        return bookTypeDao.findAlls();
+    }
+
+    /**
      * 保存书籍类型
      * @param bookType
      * fanjq 2026/2/8 12:32

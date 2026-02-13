@@ -2,14 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fan.dao.BookDao">
     <select id="findAll" resultType="com.fan.entity.Book">
-        select * from book
+        select a.*, b.name as bookTypeName from book a left join bookType b on a.bookTypeId = b.id
         <where>
             <if test="bookDTO != null and bookDTO.name != null and bookDTO.name != ''">
-                and name like concat('%', #{bookDTO.name}, '%')
+                and a.name like concat('%', #{bookDTO.name}, '%')
             </if>
             <if test="bookDTO != null and bookDTO.author != null and bookDTO.author != ''">
-                and author like concat('%', #{bookDTO.author}, '%')
+                and a.author like concat('%', #{bookDTO.author}, '%')
             </if>
         </where>
+        order by a.id desc
     </select>
 </mapper>
