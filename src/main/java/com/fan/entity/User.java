@@ -18,6 +18,10 @@ public class User {
     private Integer age;
     private String sex;
     private String phone;
+    @Column(name = "roleCode")
+    private String roleCode;
+    @Transient
+    private String roleName;
     @Transient
     private String token;
 
@@ -75,5 +79,21 @@ public class User {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getRoleCode() {
+        return roleCode;
+    }
+
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

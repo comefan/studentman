@@ -32,6 +32,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/api/user/login")
                 .excludePathPatterns("/api/files/**")
                 .excludePathPatterns("/api/bookType/upload")
+                .excludePathPatterns("/api/role/**")
                 .excludePathPatterns("/api/user/register");
     }
 }

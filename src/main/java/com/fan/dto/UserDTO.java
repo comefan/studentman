@@ -9,6 +9,7 @@ package com.fan.dto;
 public class UserDTO {
     private String name;
     private String phone;
+    private String userId;
     private Integer pageNum;
     private Integer pageSize;
 
@@ -27,6 +28,15 @@ public class UserDTO {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public Integer getPageNum() {
         return pageNum;
     }

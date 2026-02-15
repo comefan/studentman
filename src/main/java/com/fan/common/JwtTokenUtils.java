@@ -8,6 +8,7 @@ import com.fan.entity.User;
 import com.fan.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -22,6 +23,7 @@ import java.util.Date;
  * @description: TODO
  * @date 2026/2/2 21:32
  */
+@Component
 public class JwtTokenUtils {
     private static UserService staticUserService;
     private static final Logger log = LoggerFactory.getLogger(JwtTokenUtils.class);

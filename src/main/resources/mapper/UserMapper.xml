@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fan.dao.UserDao">
     <select id="findAll" resultType="com.fan.entity.User">
-        select * from user
+        select a.* ,b.name as roleName from user a left join rolemanage b on a.roleCode = b.code
         <where>
             <if test="userDTO != null and userDTO.name != null and userDTO.name != ''">
                 and name like concat('%', #{userDTO.name}, '%')
@@ -10,6 +10,7 @@
             <if test="userDTO != null and userDTO.phone != null and userDTO.phone != ''">
                 and phone like concat('%', #{userDTO.phone}, '%')
             </if>
+            a.name != 'admin'
         </where>
     </select>
 </mapper>

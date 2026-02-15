@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fan.dao.AuditDao">
+    <select id="findAll" resultType="com.fan.entity.Audit">
+        select a.* ,b.name as userName from audit a left join user b on a.userId = b.id
+        <where>
+            <if test="userDTO != null and userDTO.name != null and userDTO.name != ''">
+                and a.name like concat('%', #{userDTO.name}, '%')
+            </if>
+            <if test="userDTO != null and userDTO.userId != null and userDTO.userId != ''">
+                and a.userId = #{userDTO.userId}
+            </if>
+        </where>
+    </select>
+</mapper>
