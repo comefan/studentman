@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fan.dao.LogDao">
+    <select id="findAll" resultType="com.fan.entity.Log">
+        select * from log
+        <where>
+            <if test="userDTO != null and userDTO.name != null and userDTO.name != ''">
+                and name like concat('%', #{userDTO.name}, '%')
+            </if>
+            <if test="userDTO != null and userDTO.username != null and userDTO.username != ''">
+                and username like concat('%', #{userDTO.username}, '%')
+            </if>
+        </where>
+        order by id desc
+    </select>
+</mapper>

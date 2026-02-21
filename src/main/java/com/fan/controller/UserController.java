@@ -1,5 +1,6 @@
 package com.fan.controller;
 
+import com.fan.common.AutoLog;
 import com.fan.common.Result;
 import com.fan.dto.UserDTO;
 import com.fan.entity.User;
@@ -31,6 +32,7 @@ public class UserController {
      * 前端新增用户或者更新用户信息
      */
     @PostMapping
+    @AutoLog("新增用户或者更新用户信息")
     public Result saveUser(@RequestBody User user){
         if (user.getId() == null) {
             userService.saveUser(user);
@@ -40,12 +42,14 @@ public class UserController {
         return Result.success();
     }
     @DeleteMapping("/{id}")
+    @AutoLog("删除用户")
     public Result deleteUser(@PathVariable Integer id){
         userService.deleteUser(id);
         return Result.success();
     }
 
     @PostMapping("/login")
+    @AutoLog("用户登录")
     public Result login(@RequestBody User user){
         User loginUser = userService.login(user);
         return Result.success(loginUser);

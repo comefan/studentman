@@ -1,5 +1,6 @@
 package com.fan.service;
 
+import com.fan.common.AutoLog;
 import com.fan.common.JwtTokenUtils;
 import com.fan.dao.UserDao;
 import com.fan.dto.UserDTO;
@@ -50,7 +51,6 @@ public class UserService {
     public void updateUser(User user) {
         userDao.updateByPrimaryKeySelective(user);
     }
-
     public void deleteUser(Integer id) {
         userDao.deleteByPrimaryKey(id);
     }
