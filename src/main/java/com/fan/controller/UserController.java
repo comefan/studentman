@@ -1,14 +1,17 @@
 package com.fan.controller;
 
 import com.fan.common.AutoLog;
+import com.fan.common.CaptureConfig;
 import com.fan.common.Result;
 import com.fan.dto.UserDTO;
 import com.fan.entity.User;
 import com.fan.service.UserService;
 import com.github.pagehelper.PageInfo;
+import com.wf.captcha.utils.CaptchaUtil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Administrator
@@ -50,7 +53,17 @@ public class UserController {
 
     @PostMapping("/login")
     @AutoLog("用户登录")
-    public Result login(@RequestBody User user){
+    public Result login(@RequestBody User user, @RequestParam("key") String key, HttpServletRequest request){
+        // 从map中获取验证码
+        String captcha = CaptureConfig.CAPTURE_MAP.get(key);
+        // 验证码校验
+        if (captcha == null || !captcha.equals(user.getVerCode().toLowerCase())) {
+            CaptchaUtil.clear(request);
+            CaptureConfig.CAPTURE_MAP.remove(key);
+            return Result.fail("验证码错误");
+        }
+        CaptchaUtil.clear(request);
+        CaptureConfig.CAPTURE_MAP.remove(key);
         User loginUser = userService.login(user);
         return Result.success(loginUser);
     }

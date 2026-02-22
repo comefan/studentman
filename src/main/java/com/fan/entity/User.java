@@ -24,6 +24,8 @@ public class User {
     private String roleName;
     @Transient
     private String token;
+    @Transient
+    private String verCode;
 
     public Integer getId() {
         return id;
@@ -95,5 +97,13 @@ public class User {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public String getVerCode() {
+        return verCode;
+    }
+
+    public void setVerCode(String verCode) {
+        this.verCode = verCode;
     }
 }

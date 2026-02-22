@@ -6,6 +6,7 @@ public enum ResultEnum {
         UNAUTHORIZED("401", "未认证"),
         FORBIDDEN("403", "禁止访问"),
         NOT_FOUND("404", "资源不存在"),
+
         INTERNAL_SERVER_ERROR("500", "服务器内部错误");
     ;
     private String code;
